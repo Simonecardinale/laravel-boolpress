@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -28,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.post.create');
     }
 
     /**
@@ -39,7 +42,19 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $idUser = Auth::id();
+        $newPost = new Post();
+        $newPost ->user_id = $idUser;
+        $newPost->slug = Str::slug($data['title']);
+        // $newPost -> fill($data);
+        $newPost ->title = $data['title'];
+        $newPost ->content = $data['content'];
+
+
+        $newPost->save();
+
+        // return redirect()->view('admin.post.index');
     }
 
     /**
@@ -75,7 +90,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $data = $request->all();
+        $post->update($data);
+
+       return redirect()->route('post.index', $post);
+
     }
 
     /**
@@ -84,8 +103,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post-> delete();
+        return redirect()-> route('post.index');
     }
 }

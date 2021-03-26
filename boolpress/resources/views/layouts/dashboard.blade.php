@@ -21,22 +21,20 @@
 </head>
 <body>
     <div class="container w-70 mt-5">
-
-        <button type="button" class="btn btn-primary">Aggiungi post</button>
         <table class="table">
             <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Title</th>
-                <th scope="col">User Id</th>
-                <th scope="col">Created At</th>
-                <th scope="col">Updated At</th>
-            </tr>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">User Id</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Updated At</th>
+                </tr>
             </thead>
             <tbody>
             @yield('section-post')
             </tbody>
-    </table>
+        </table>
     </div>
 </body>
 </html>

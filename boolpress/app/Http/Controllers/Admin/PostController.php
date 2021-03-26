@@ -48,9 +48,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        $data = ['item' => $post];
+        return view('admin.post.show', $data);
     }
 
     /**
@@ -59,9 +60,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $data = ['item' => $post];
+        return view('admin.post.edit', $data);
     }
 
     /**
@@ -71,7 +73,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         //
     }

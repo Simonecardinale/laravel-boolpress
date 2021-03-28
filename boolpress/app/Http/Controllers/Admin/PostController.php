@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -30,8 +31,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.post.create');
+        $tags = Tag::all();
+        $data = ['tags'=> $tags];
+        return view('admin.post.create', $data);
     }
 
     /**
@@ -51,8 +53,10 @@ class PostController extends Controller
         $newPost ->title = $data['title'];
         $newPost ->content = $data['content'];
 
-
         $newPost->save();
+        if(array_key_exists('tags', $data)){
+            $newPost -> tags() -> sync($data['tags']);
+        };
 
         // return redirect()->view('admin.post.index');
     }
@@ -77,7 +81,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $data = ['item' => $post];
+        $tags = Tag::all();
+        $data = ['item' => $post, 'tags'=> $tags];
         return view('admin.post.edit', $data);
     }
 
@@ -93,6 +98,10 @@ class PostController extends Controller
         $data = $request->all();
         $post->update($data);
 
+        if(array_key_exists('tags', $data)){
+            $post -> tags() -> sync($data['tags']);
+        };
+
        return redirect()->route('post.index', $post);
 
     }
@@ -105,6 +114,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post -> tags()->sync();
         $post-> delete();
         return redirect()-> route('post.index');
     }

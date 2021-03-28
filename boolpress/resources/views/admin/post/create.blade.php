@@ -19,6 +19,14 @@
         <textarea class="form-control" aria-label="With textarea" name="content"></textarea>
       </div>
       <button type="submit" class="btn btn-success">Confirm</button>
+    @foreach ($tags as $element)
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="{{ $element -> id }}" name="tags[]" id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+                {{ $element-> name }}
+                </label>
+            </div>
+    @endforeach
 </div>
 </form>
 @endsection

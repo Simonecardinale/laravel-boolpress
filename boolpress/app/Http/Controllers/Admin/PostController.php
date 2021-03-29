@@ -8,6 +8,7 @@ use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Tag;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -52,13 +53,16 @@ class PostController extends Controller
         // $newPost -> fill($data);
         $newPost ->title = $data['title'];
         $newPost ->content = $data['content'];
+        $cover_path = Storage::put('post_covers', $data['image']);
+        $data['cover'] = $cover_path;
+        $newPost -> cover = $data['cover'];
 
         $newPost->save();
         if(array_key_exists('tags', $data)){
             $newPost -> tags() -> sync($data['tags']);
         };
 
-        // return redirect()->view('admin.post.index');
+        return redirect()->route('post.index');
     }
 
     /**

@@ -6,6 +6,8 @@
     <td>{{ $item->id }}</td>
     <td>{{ $item->title }}</td>
     <td>{{ $item->user_id }}</td>
+    <td>{{ $item->content }}</td>
+    <td><img style="width: 10rem;" src="{{ asset('storage/' .$item->cover) }}" alt=""></td>
     <td>{{ $item->created_at }}</td>
     <td>{{ $item->updated_at }}</td>
 </tr>

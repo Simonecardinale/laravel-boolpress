@@ -27,6 +27,8 @@
                     <th scope="col">ID</th>
                     <th scope="col">Title</th>
                     <th scope="col">User Id</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Updated At</th>
                 </tr>

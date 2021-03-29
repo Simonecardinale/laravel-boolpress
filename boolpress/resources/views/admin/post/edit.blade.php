@@ -22,7 +22,7 @@
       <h2>Immagine</h2>
         <img style="width: 10rem;"  src="{{ asset('storage/' .$item->cover) }}" alt="">
       @endif
-      <form form method="POST" action="{{ route('post.update', $item) }}" enctype="multipart/form-data">
+      <form method="POST" action="{{ route('post.update', $item) }}" enctype="multipart/form-data">
         <div class="form-group">
           <label for="immagine">Carica l'immagine</label>
           <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">

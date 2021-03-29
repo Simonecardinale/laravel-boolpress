@@ -69,6 +69,7 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/admin') }}">Admin</a>
+                        <a href="{{ route('post.index') }}">Posts</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a class="navbar-brand" href="{{ route('guest.contatti') }}">

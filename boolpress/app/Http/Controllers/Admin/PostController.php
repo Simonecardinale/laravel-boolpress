@@ -19,6 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        
         $posts = Post::all();
         $data = ['posts' => $posts];
         return view('admin.post.index', $data);
@@ -100,8 +101,11 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $data = $request->all();
-        $cover_path = Storage::put('post_covers', $data['image']);
-        $data['cover'] = $cover_path;
+        if(array_key_exists('cover', $data)){
+
+            $cover_path = Storage::put('post_covers', $data['image']);
+            $data['cover'] = $cover_path;
+        }
         $post->update($data);
 
         if(array_key_exists('tags', $data)){
@@ -120,7 +124,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post -> tags()->sync();
+        $post -> tags() -> sync([]);
+       
         $post-> delete();
         return redirect()-> route('post.index');
     }

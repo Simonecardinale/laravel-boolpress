@@ -15,4 +15,15 @@ class HomeController extends Controller
     {
         return view('guest.welcome');
     }
+
+    public function contatti()
+    {
+        return view('guest.contatti');
+    }
+
+    public function contattiSent(Request $request)
+    {
+        $data = $request->all();
+        
+    }
 }

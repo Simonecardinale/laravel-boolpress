@@ -71,7 +71,9 @@
                         <a href="{{ url('/admin') }}">Admin</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-
+                        <a class="navbar-brand" href="{{ route('guest.contatti') }}">
+                            Contatti
+                        </a>
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif

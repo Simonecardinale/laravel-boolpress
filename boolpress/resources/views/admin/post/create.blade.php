@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{ route('post.store') }}">
+<form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
 @method('POST')
 @csrf
 <div class="container w-70">
@@ -12,6 +12,12 @@
         </div>
         <input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1" name="title">
     </div>
+    <form>
+        <div class="form-group">
+          <label for="immagine">Carica l'immagine</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+        </div>
+      </form>
     <h2>Text</h2>
     <div class="input-group">
         <div class="input-group-prepend">

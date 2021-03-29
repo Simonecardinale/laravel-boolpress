@@ -42,9 +42,6 @@
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                <a class="navbar-brand" href="{{ route('guest.contatti') }}">
-                                    Contatti
-                                </a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
